@@ -4,11 +4,7 @@ A basic and powerful tool to assist in removing leftover installer files from al
 
 ![Example Screenshot](assets/example_screenshot.png)
 
-On a side note, this project is meant to help me learn how to do a bunch of different things:
-- Using multiple programming languages in collaboration
-- Traversing and managing Windows files using code
-- Creating GUI using Python's standard Tkinter library
-- Compiling different types of files into binary ready for distribution
+This is my first attempt at creating software ready for distribution, the goal being to make it usable on any Windows machine. It falls a bit short of this vision for now, as I've seen the garbage scanning algorithm error and crash on some computers. Whether I'll fix this and/or expand on it's function, I don't know. But this project was valuable in teaching me the basics of making a program both user-friendly and compatible with machines other than mine.
 
 ## Build Dependencies
 **Python (3.7+)**
