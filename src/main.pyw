@@ -16,8 +16,8 @@ import os
 import subprocess
 from tkinter import *
 from tkinter import messagebox
-import customTk
-import mainUI
+import customtk
+import mainui
 
 # When running a one-file build, any resource files used by the program are unpacked
 # into a temp directory referenced by sys._MEIPASS. This function is necessary to
@@ -29,9 +29,9 @@ def getResourcePath(rel_path:str) -> str:
         base_path = os.path.abspath(".")
     return os.path.join(base_path, rel_path)
 
-# All graphic elements are defined in the mainUI module, this class is a wrapper for the
+# All graphic elements are defined in the mainui module, this class is a wrapper for the
 # interface and provides callback functions for the buttons.
-class GarbageRemoveinator(mainUI.GarbageRemoveinatorUI):
+class GarbageRemoveinator(mainui.GarbageRemoveinatorUI):
     def __init__(self, parent:Widget, scancommand:str, datafile:str):
         self.scan_cmd = scancommand
         self.data_file = datafile
@@ -41,7 +41,7 @@ class GarbageRemoveinator(mainUI.GarbageRemoveinatorUI):
             deletefunc=self.deleteHandler
         )
         # Initial garbage scan
-        path_list = self.scanGarbage(self.scan_cmd)
+        path_list = self.scanGarbage()
         if len(path_list) == 0:
             messagebox.showinfo(
                 title="All clear!",
@@ -50,7 +50,7 @@ class GarbageRemoveinator(mainUI.GarbageRemoveinatorUI):
         self.path_listbox.setContent(content_list=path_list)
 
     def refreshListbox(self) -> None:
-        path_list = self.scanGarbage(self.scan_cmd)
+        path_list = self.scanGarbage()
         if path_list == self.path_listbox.getContent():
             dialog_msg = "No new possible trash detected."
         else:
@@ -61,13 +61,11 @@ class GarbageRemoveinator(mainUI.GarbageRemoveinatorUI):
             message=dialog_msg
         )
     
-    def scanGarbage(self, cmd:str=None, datafile:str=None) -> list:
-        if cmd == None: cmd = self.scan_cmd
-        if datafile == None: datafile = self.data_file
+    def scanGarbage(self) -> list:
         try:
-            with open(getResourcePath(datafile)) as stdin:
+            with open(getResourcePath(self.data_file)) as stdin:
                 completed_process = subprocess.run(
-                    [getResourcePath(cmd)],
+                    [getResourcePath(self.scan_cmd)],
                     stdin=stdin,
                     timeout=5,
                     check=True,
@@ -98,9 +96,9 @@ class GarbageRemoveinator(mainUI.GarbageRemoveinatorUI):
             title="Confirmation",
             message="Are you sure you want to delete these files?"
         ):
-            path_query = [e[1] for e in [pair for pair in
+            path_query = [index for index, path in
                          enumerate(self.path_listbox.getContent())
-                         if pair[0] in self.path_listbox.curselection()]]
+                         if index in self.path_listbox.curselection()]
             for path in path_query:
                 try:
                     os.remove(path)
@@ -116,9 +114,9 @@ class GarbageRemoveinator(mainUI.GarbageRemoveinatorUI):
             )
 
 if __name__ == "__main__":
-    scan_cmd = ".\scanutil.exe"
-    data_file = ".\data.txt"
-    root = customTk.TkWindow(
+    scan_cmd = R".\scanutil.exe"
+    data_file = R".\config\toscan.txt"
+    root = customtk.TkWindow(
         title="Garbage Removeinator",
         geometry="500x275",
         centerscreen=True

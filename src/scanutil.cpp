@@ -6,10 +6,8 @@
 #include <string>
 #include <set>
 #include <algorithm>
-
 #include <chrono>
 #include <filesystem>
-
 #include "utility.h"
 
 namespace fs = std::filesystem;

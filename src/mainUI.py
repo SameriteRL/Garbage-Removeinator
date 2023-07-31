@@ -1,13 +1,7 @@
-"""
-This module is not intended for use anywhere except within the Garbage Removeinator
-project. Meant to hold the GUI code used in the main script, which should exist in the
-same directory as this file.
-"""
-
 from typing import Callable
 from tkinter import *
 from tkinter import ttk
-import customTk
+import customtk
 
 # I only imported typing.Callable to use it as a type hint
 class GarbageRemoveinatorUI(ttk.Frame):
@@ -26,7 +20,7 @@ class GarbageRemoveinatorUI(ttk.Frame):
         self.paths_frame = ttk.Frame(self, borderwidth=5, padding=(0, 5, 0, 5))
         self.paths_frame.grid(column=0, row=1, sticky=(N, S, W, E))
 
-        self.path_listbox = customTk.MultiSelectListbox(self.paths_frame)
+        self.path_listbox = customtk.MultiSelectListbox(self.paths_frame)
         self.path_listbox.grid(column=0, row=0, sticky=(N, S, W, E))
         self.paths_frame.columnconfigure(0, weight=1)
         self.paths_frame.rowconfigure(0, weight=1)

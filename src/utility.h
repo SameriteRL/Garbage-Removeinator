@@ -1,6 +1,5 @@
 #ifndef __UTILITY_H__
 #define __UTILITY_H__
-
 #include <chrono>
 
 std::string lowerStr(const std::string& str);

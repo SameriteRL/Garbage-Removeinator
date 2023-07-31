@@ -1,7 +1,6 @@
 #include <iostream>
 #include <string>
 #include <set>
-
 #include "utility.h"
 
 /* Given a string, returns a copy of the string with all uppercase letters turned

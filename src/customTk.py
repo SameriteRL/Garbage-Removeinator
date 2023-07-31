@@ -1,5 +1,5 @@
 """
-Module of custom, general-use Tk classes. Intended for use in any Tk-based project.
+Module of custom, general-use Tk classes. For use in any Tk-based project.
 By Raymond Chen
 """
 
